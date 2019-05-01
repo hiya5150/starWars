@@ -1,3 +1,4 @@
-<p>
-  results works!
+<div *ngIf="results"></div>
+<p *ngFor="let res of results">
+  Homeworld: {{res.homeworld}}
 </p>

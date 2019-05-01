@@ -1,15 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.sass']
+  styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-
-  constructor() { }
+  searchFormCtrl = new FormControl(null, {validators: [
+    Validators.required,
+      Validators.minLength(3)
+    ]});
+  constructor(public router: Router) { }
 
   ngOnInit() {
+  }
+    onSubmit() {
+    if (this.searchFormCtrl.valid) {
+      this.router.navigate(['/results', this.searchFormCtrl.value]);
+    }
   }
 
 }
